@@ -16,9 +16,8 @@ android:
 
 branches:
   only:
-    - A
+    - configTravis
     - master
-
 
 script:
   - ./gradlew assembleAndroidTest
