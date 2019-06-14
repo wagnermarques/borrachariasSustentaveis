@@ -17,8 +17,6 @@ android:
 branches:
   only:
     - configTravis
-    - master
-
 
 script:
   - ./BorrachariasSustentaveis/gradlew assembleAndroidTest

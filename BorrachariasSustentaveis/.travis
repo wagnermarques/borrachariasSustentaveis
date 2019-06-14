@@ -3,7 +3,7 @@ jdk: oraclejdk8
 env:
   global:
     - ANDROID_TARGET=android-23
-    - ANDROID_ABI=armeabi-v7a
+    - ANDROID_ABI=armeabi-v7a    
 android:
   components:
   - tools
@@ -17,7 +17,6 @@ android:
 branches:
   only:
     - configTravis
-    - master
 
 script:
   - ./gradlew assembleAndroidTest
