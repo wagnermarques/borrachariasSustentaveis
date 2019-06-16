@@ -10,7 +10,7 @@ android:
   - tools
   - platform-tools
   - build-tools-23.0.3
-  - android-23
+  - android-25
   - extra-android-m2repository
   - $ANDROID_TARGET
   - sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
