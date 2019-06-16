@@ -38,10 +38,12 @@ cache:
 
  
 before_script:
-  - cd ./BorrachariasSustentaveis && chmod +x gradlew
+  #change to project directory ./BorrachariasSustentaveis
+  - cd ./BorrachariasSustentaveis
+  - chmod +x gradlew
 
 script:
-  - cd ./BorrachariasSustentaveis && ./gradlew assembleDebug
+  - ./gradlew assembleDebug
 #  - cd ./BorrachariasSustentaveis && ./gradlew test
   
 branches:
