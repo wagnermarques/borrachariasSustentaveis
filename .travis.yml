@@ -41,8 +41,8 @@ before_script:
   - cd ./BorrachariasSustentaveis && chmod +x gradlew
 
 script:
-  - cd ./BorrachariasSustentaveis && ./gradlew clean build
-  - cd ./BorrachariasSustentaveis && ./gradlew test
+  - cd ./BorrachariasSustentaveis && ./gradlew assembleDebug
+#  - cd ./BorrachariasSustentaveis && ./gradlew test
   
 branches:
   only:
