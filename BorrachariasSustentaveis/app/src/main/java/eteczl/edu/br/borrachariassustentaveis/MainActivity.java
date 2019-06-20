@@ -1,5 +1,6 @@
 package eteczl.edu.br.borrachariassustentaveis;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,5 +99,12 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void login(View view){
+        startActivity(new Intent(getApplicationContext(),Login.class));
+    }
+    public void cadastrar(View view){
+        startActivity(new Intent(getApplicationContext(),Cadastro.class));
     }
 }
