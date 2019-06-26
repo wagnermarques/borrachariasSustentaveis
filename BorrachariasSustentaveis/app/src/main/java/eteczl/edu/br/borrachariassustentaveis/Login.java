@@ -1,18 +1,32 @@
 package eteczl.edu.br.borrachariassustentaveis;
 
-import android.widget.EditText;
-import android.widget.TextView;
-
 class Login {
-    private EditText txtEmail;
-    private EditText txtSenha;
-    private EditText txtUsuario;
-    private EditText txtCEP;
-    private EditText txtTel;
-    FirebaseAuth auth  = FirebaseAuth.getInstance();
+    //	Criando e instanciando o objeto da classe FirebaseAuth
+    private FirebaseAuth mAuth;
+    mAuth = FirebaseAuth.getInstance()
 
-    public void cadastrar(){
-        txtEmail = findViewById(R.id.txtEmail);
-        txtSenha = findViewById(R.id.txtSenha);
+    //	Método de login do usuário
+    private void signIn(String email, String senha) {
+        //	Antes de autenticar, validar os campos do formulário
+        mAuth.signInWithEmailAndPassword(email, senha).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    // Autenticação bem-sucedida
+                    Log.d(TAG, "signInWithEmail:success");
+                    FirebaseUser user = mAuth.getCurrentUser();
+                } else {
+                    // Se a autenticação falhar, mostrar uma mensagem para o usuário.
+                    Log.w(TAG, "signInWithEmail:failure", task.getException());
+                    Toast.makeText(EmailPasswordActivity.this, "Dados de acesso incorretos.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
+    //	Método de logout
+    private void signOut() {
+        mAuth.signOut();
     }
 }
