@@ -99,3 +99,42 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 }
+
+final class FireBaseConnect {
+    private String logTAG = "info";
+    private FirebaseAuth fbAuth;
+
+    private void logoff() {
+        this.fbAuth.signOut();
+    }
+
+    private void login(AppCompatActivity app, String email, String pass) {
+        if(!this.formIsValid(email, pass)){
+            return;
+        }
+        this.fbAuth.signInWithEmailAndPassword(email.toString(), pass.toString())
+                .addOnCompleteListener(app, new OnCompleteListener(){
+
+                    public abstract void onComplete(Task<TResult> task) {
+                        if (!task.isSuccessful) {
+                            //toast("Falha no login");
+                        }
+                    }
+                });
+    }
+
+    private boolean formIsValid(String email, String pass){
+        //toast("private fun formIsValid() : Boolean {...")
+        boolean ret = true;
+
+        if (email.equals("") || pass.equals("")) {
+            //toast("ou email ou senha estao em branco e nao pode...")
+            ret = false;
+        } else if (pass.length() < 6) {
+            //toast("A senha precisa ter pelo menos 6 caracteres...")
+            ret = false;
+        }
+
+        return ret;
+    }
+}
