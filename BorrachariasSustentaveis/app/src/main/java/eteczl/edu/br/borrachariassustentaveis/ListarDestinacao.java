@@ -28,7 +28,7 @@ public class ListarDestinacao extends AppCompatActivity {
         setContentView(R.layout.activity_listar_destinacao);
 
         this.getDestinacoes();
-        mListView = (ListView) findViewById(R.id.list_view_destinacoes);
+        mListView = (ListView) findViewById(R.id.lv_listar_destinacao);
 
         ArrayAdapter adaptadorDasDestinacoes = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, destinacoes);
 
