@@ -47,7 +47,7 @@ public class ListarDestinacao extends AppCompatActivity {
         destinacoes = new ArrayList<String>();
         FirebaseFirestore database = FirebaseFirestore.getInstance();
 
-        database.collection("Destinacoes")
+        database.collection("borracharias")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
 
