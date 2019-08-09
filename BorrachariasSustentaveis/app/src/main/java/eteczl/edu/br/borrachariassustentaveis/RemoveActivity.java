@@ -11,6 +11,9 @@ public class RemoveActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remove);
 
@@ -27,5 +30,16 @@ public class RemoveActivity extends AppCompatActivity {
                 }
             }
         });
+        btn.setOnClickListener(new Button.OnClickListener() {
+            user.delete()
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Log.d(TAG, "User account deleted.");
+                            }
+                        }
+                    }
+            });
     }
 }
