@@ -1,8 +1,8 @@
 package eteczl.edu.br.borrachariassustentaveis;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -28,19 +29,6 @@ public class ListarDestinacao extends AppCompatActivity {
         setContentView(R.layout.activity_listar_destinacao);
 
         this.getDestinacoes();
-        mListView = (ListView) findViewById(R.id.lv_listar_destinacao);
-
-        ArrayAdapter adaptadorDasDestinacoes = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, destinacoes);
-
-        mListView.setAdapter(adaptadorDasDestinacoes);
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                // inicia a activity responsável por mostrar os dados/campos detalhadamente do item selecionado pelo usuário
-            }
-        });
     }
 
     private void getDestinacoes(){
@@ -54,15 +42,33 @@ public class ListarDestinacao extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task){
                 if(task.isSuccessful()){
-                    for(DocumentSnapshot document : task.getResult()) {
+                    for(QueryDocumentSnapshot document : task.getResult()) {
                         String nome = document.getId();
                         destinacoes.add(nome);
+                        Toast.makeText(getApplicationContext(), nome, Toast.LENGTH_LONG).show();
                     }
+                    setmListView();
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "não foi possível requisitar os dados", Toast.LENGTH_LONG).show();
                     finish();
                 }
+            }
+        });
+    }
+
+    public void setmListView(){
+        mListView = (ListView) findViewById(R.id.lv_listar_destinacao);
+
+        ArrayAdapter adaptadorDasDestinacoes = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, destinacoes);
+
+        mListView.setAdapter(adaptadorDasDestinacoes);
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                // inicia a activity responsável por mostrar os dados/campos detalhadamente do item selecionado pelo usuário
             }
         });
     }
